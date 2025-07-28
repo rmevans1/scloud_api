@@ -10,7 +10,7 @@ from .exceptions import AuthException
 
 cache = TTLCache(maxsize=int(os.environ.get('SCLOUD_API_AUTH_CACHE_SIZE', 10)), ttl=int(os.environ.get('SCLOUD_API_AUTH_CACHE_TTL', 3000)))
 
-class AuthToken:
+class AuthTokenClient:
     path = "/api/token"
     url = False
 

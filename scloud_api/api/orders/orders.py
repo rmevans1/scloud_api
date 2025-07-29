@@ -81,3 +81,13 @@ class Orders(Client):
             "Exported": exported,
         }
         return self._request(path="/api/Orders/SetExported", method="PUT", data=data)
+
+    def set_custom_column(self, order_id, column_name, column_value) -> ApiResponse:
+        data = {
+            "ColumnName": column_name,
+            "Value": column_value,
+        }
+        return self._request(f"/api/Orders/{order_id}/CustomColumns", "PUT", data=data)
+
+    def set_custom_columns(self, order_id, columns) -> ApiResponse:
+        return self._request(f"/api/Orders/{order_id}/CustomColumns/Multiple", "PUT", data=columns)

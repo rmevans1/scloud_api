@@ -25,11 +25,13 @@ class Client:
                 if data and method in ("GET")
                 else None
             ))
+        print(self.headers)
         return ApiResponse(res.json())
 
     @property
     def headers(self):
         return {
+            "Content-Type": "application/json",
             "Accept": "application/json",
             "Authorization": f"Bearer {self._auth.access_token}",
         }

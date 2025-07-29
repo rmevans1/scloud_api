@@ -25,7 +25,6 @@ class Client:
                 if data and method in ("GET")
                 else None
             ))
-        print(self.headers)
         return ApiResponse(res.status_code, res.json())
 
     @property

@@ -74,3 +74,10 @@ class Orders(Client):
         JSON object containing a list of sales order metadata.
         """
         return self._request(path="/api/Orders", method="GET", data=filters)
+
+    def set_exported(self, order_ids, exported=True) -> ApiResponse:
+        data = {
+            "Orders": order_ids,
+            "Exported": exported,
+        }
+        return self._request(path="/api/Orders/SetExported", method="PUT", data=data)

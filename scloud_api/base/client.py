@@ -26,7 +26,7 @@ class Client:
                 else None
             ))
         print(self.headers)
-        return ApiResponse(res.json())
+        return ApiResponse(res.status_code, res.json())
 
     @property
     def headers(self):

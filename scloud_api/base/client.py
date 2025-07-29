@@ -1,6 +1,6 @@
 from requests import request
 import json
-from scloud_api.auth import auth_token_client, AuthTokenClient
+from scloud_api.auth import AuthTokenClient
 from .ApiResponse import ApiResponse
 
 

@@ -36,7 +36,11 @@ class Client:
                     else None
                 ))
             status_code = res.status_code
-            result = res.json()
+            print(res.text)
+            if res.text != '':
+                result = res.json()
+            else:
+                result = ''
         except AuthException as e:
             error = e.message
             status_code = 401

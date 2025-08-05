@@ -84,7 +84,7 @@ class Orders(Client):
             'IsPinned': is_pinned,
         }
 
-        return self._request(path=f"/api/Orders/{order_id}/addNote", method="POST", data=data)
+        return self._request(path=f"/api/Orders/{order_id}/Notes", method="POST", data=data)
 
     def set_exported(self, order_ids, exported=True) -> ApiResponse:
         data = {

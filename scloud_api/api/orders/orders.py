@@ -77,6 +77,15 @@ class Orders(Client):
         filters['model.pageSize'] = pageSize
         return self._request(path="/api/Orders", method="GET", data=filters)
 
+    def add_note(self, order_id, message, category=0, is_pinned = False):
+        data = {
+            'Message': message,
+            'Category': category,
+            'IsPinned': is_pinned,
+        }
+
+        return self._request(path=f"/api/Orders/{order_id}/addNote", method="POST", data=data)
+
     def set_exported(self, order_ids, exported=True) -> ApiResponse:
         data = {
             "Orders": order_ids,

@@ -36,7 +36,6 @@ class Client:
                     else None
                 ))
             status_code = res.status_code
-            print(res.text)
             if res.text != '':
                 result = res.json()
             else:

@@ -3,7 +3,7 @@ import urllib.parse
 from scloud_api.base import Client, ApiResponse
 
 class Orders(Client):
-    def get_orders(self, filters=None, pageSize=10, pageNum=1) -> ApiResponse:
+    def get_orders(self, filters={}, pageSize=10, pageNum=1) -> ApiResponse:
         """
         get_orders(self, filters=None) -> ApiResponse
         Fetch metadata for a list of sales orders.
@@ -73,6 +73,8 @@ class Orders(Client):
         --------
         JSON object containing a list of sales order metadata.
         """
+        if filters is None:
+            filters = {}
         filters['model.pageNumber'] = pageNum
         filters['model.pageSize'] = pageSize
         return self._request(path="/api/Orders", method="GET", data=filters)

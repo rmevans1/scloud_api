@@ -4,7 +4,7 @@ from scloud_api.base import Client, ApiResponse
 
 
 class Catalog(Client):
-    def list_items(self, filters=None) -> ApiResponse:
+    def list_items(self, filters={}, pageSize=10, pageNum=1) -> ApiResponse:
         """
         Fetch catalog info for multiple products.
 
@@ -60,5 +60,8 @@ class Catalog(Client):
         --------
         JSON object representing catalog data.
         """
-
+        if filters is None:
+            filters = {}
+        filters['model.pageNumber'] = pageNum
+        filters['model.pageSize'] = pageSize
         return self._request(path="/api/Catalog", method="GET", data=filters)

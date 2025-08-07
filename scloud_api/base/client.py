@@ -9,7 +9,7 @@ class Client:
     def __init__(self, cred=None):
         self.auth = AuthTokenClient(cred)
 
-    def _request(self, path: str, method: str, data: dict = None) -> ApiResponse:
+    def _request(self, path: str, method: str, data: dict = None, return_raw=False) -> ApiResponse:
         try:
             self._auth = self.auth.get_auth()
         except AuthException as e:
@@ -36,10 +36,13 @@ class Client:
                     else None
                 ))
             status_code = res.status_code
-            if res.text != '':
-                result = res.json()
+            if return_raw:
+                result = res.content
             else:
-                result = ''
+                if res.text != '':
+                    result = res.json()
+                else:
+                    result = ''
         except AuthException as e:
             error = e.message
             status_code = 401
